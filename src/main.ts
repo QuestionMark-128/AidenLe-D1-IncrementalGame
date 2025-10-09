@@ -1,8 +1,6 @@
 import "./style.css";
-
+//button
 const button = document.createElement("button");
-
-button.innerHTML = "💎";
 
 button.style.fontSize = "64px";
 button.style.borderRadius = "50%";
@@ -12,4 +10,22 @@ button.style.display = "flex";
 button.style.alignItems = "center";
 button.style.justifyContent = "center";
 
-document.body.append(button);
+button.innerHTML = "💎";
+
+//counter
+const counter = document.createElement("div");
+
+counter.style.fontSize = "32px";
+
+let gemCount : number = 0;
+function updateCount() {
+  counter.textContent = `${gemCount} Gems`;
+}
+updateCount();
+
+button.addEventListener("click", () => {
+  gemCount += 1;
+  updateCount();
+})
+
+document.body.append(counter, button);
