@@ -19,7 +19,7 @@ counter.style.fontSize = "32px";
 
 let gemCount: number = 0;
 function updateCount() {
-  counter.textContent = `${gemCount} Gems`;
+  counter.textContent = `${gemCount.toFixed(1)} Gems`;
 }
 updateCount();
 
@@ -29,9 +29,23 @@ button.addEventListener("click", () => {
 });
 
 //automatic clicking
-setInterval(() => {
-  gemCount += 1;
+// setInterval(() => {
+//   gemCount += 1;
+//   updateCount();
+// }, 1000);
+
+//automatic clicking with continuous growth
+let zero = performance.now();
+const seconds = 1;
+
+function animate(time: number) {
+  const timePassed = (time - zero) / 1000;
+  gemCount += seconds * timePassed;
+  zero = time;
   updateCount();
-}, 1000);
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
 
 document.body.append(counter, button);
