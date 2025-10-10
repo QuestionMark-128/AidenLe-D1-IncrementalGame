@@ -17,7 +17,7 @@ const counter = document.createElement("div");
 
 counter.style.fontSize = "32px";
 
-let gemCount : number = 0;
+let gemCount: number = 0;
 function updateCount() {
   counter.textContent = `${gemCount} Gems`;
 }
@@ -26,6 +26,12 @@ updateCount();
 button.addEventListener("click", () => {
   gemCount += 1;
   updateCount();
-})
+});
+
+//automatic clicking
+setInterval(() => {
+  gemCount += 1;
+  updateCount();
+}, 1000);
 
 document.body.append(counter, button);
